@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys", "FraudSys\FraudSys.csproj", "{E62E3018-353C-48A9-9526-1A7C543B0636}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E62E3018-353C-48A9-9526-1A7C543B0636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62E3018-353C-48A9-9526-1A7C543B0636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62E3018-353C-48A9-9526-1A7C543B0636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62E3018-353C-48A9-9526-1A7C543B0636}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D67644D8-A823-4D5A-94E2-6D571DF46461}
+	EndGlobalSection
+EndGlobal
