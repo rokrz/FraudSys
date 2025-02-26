@@ -137,28 +137,23 @@ public class ClienteController : ControllerBase
     //Metodo de validacao das entradas
     private bool ValidaNovoUsuario(Cliente user)
     {
-        bool isNewUserValid = true;
-
         //Valida o CPF por meio de um Regex
         if (string.IsNullOrEmpty(user.CPF) || !Regex.Match(user.CPF, @"^\d{3}\.\d{3}\.\d{3}-\d{2}$").Success)
         {
-            isNewUserValid = false;
-            return isNewUserValid;
+            return false;
         }
         //Verifica que o LimitePix é um numero positivo ou nulo
         if (user.LimitePIX < 0)
         {
-            isNewUserValid = false;
-            return isNewUserValid;
+            return false;
         }
         //Verirfica que os campos não são nulos
         if (string.IsNullOrEmpty(user.NumeroAgencia) || string.IsNullOrEmpty(user.NumeroConta))
         {
-            isNewUserValid = false;
-            return isNewUserValid;
+            return false;
         }
 
-        return isNewUserValid;
+        return true;
     }
 
 
