@@ -17,9 +17,10 @@ namespace FraudSys.Repositories
             await context.SaveAsync(cliente);
         }
 
-        public async Task Atualizar(Cliente cliente)
+        public async Task<Cliente> Atualizar(Cliente cliente)
         {
             await context.SaveAsync(cliente);
+            return cliente;
         }
 
         public async Task<Cliente> Buscar(string agencia, string conta)

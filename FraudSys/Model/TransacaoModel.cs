@@ -5,7 +5,6 @@
         public string NumeroAgenciaOrigem { get; set; }
         public string NumeroContaOrigem { get; set; }
         public float ValorTransacao { get; set; }
-
         public string NumeroAgenciaDestino { get; set; }
         public string NumeroContaDestino { get; set; }
 
