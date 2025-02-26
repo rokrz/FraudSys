@@ -1,0 +1,33 @@
+@FraudSys_HostAddress = https://localhost:7000
+
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+POST {{FraudSys_HostAddress}}/Cliente/CriaCliente
+Content-Type:application/json
+{
+    "CPF":"48431251808",
+    "NumeroAgencia":"12345678",
+    "NumeroConta":"9101112",
+    "LimitePIX":100
+}
+###
+
+DELETE {{FraudSys_HostAddress}}/Cliente/DeletaCliente/12345678/9101112
+Content-Type:application/json
+###
+
+DELETE {{FraudSys_HostAddress}}/Cliente/DeletaCliente/985212/4584395
+Content-Type:application/json
+###
+
+POST {{FraudSys_HostAddress}}/Cliente/AtualizaLimite
+Content-Type:application/json
+{
+    "NumeroAgencia":"12345678",
+    "NumeroConta":"9101112",
+    "NovoLimite":200
+}
+
+###
+
+GET {{FraudSys_HostAddress}}/Cliente/BuscaCliente/agencia2/conta2
+Content-Type:application/json
