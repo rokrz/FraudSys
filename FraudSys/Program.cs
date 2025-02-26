@@ -1,6 +1,9 @@
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2;
 using FraudSys.Repositories;
+using FraudSys.Helpers;
+
+DatabaseManager.CreateTable();
 
 var builder = WebApplication.CreateBuilder(args);
 
