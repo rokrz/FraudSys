@@ -12,7 +12,7 @@
 4- O sistema já pode ser testado através dos comandos no documento requests.http ou outros métodos (Postman ou API do Swagger)
 
 ## **Justificativas**
-Na criação da estrutura do banco, optei por usar o conjunto de agência e cpf como chaves de usuários. Ao considerar usar somente o cpf de chave, acreditei que seria um limitante do ponto de vista do usuário, só poder ter uma conta com seu cpf, e possivelmente oneroso do ponto de vista do banco, dado que o cpf seria usado como partition key, o que abriria mais opções de particionamento. Decidi no primeiro momento agrupar por agência e fazer a chave secundária o número da conta, mas por se tratar de uma aplicação PIX, optei por substituí-la pelo CPF.
+Na criação da estrutura do banco, optei por usar o conjunto de agência e CPF como chaves de usuários. Ao considerar usar somente o CPF de chave, acreditei que seria um limitante do ponto de vista do usuário, só poder ter uma conta com seu CPF, e possivelmente oneroso do ponto de vista do banco, dado que o CPF seria usado como partition key, o que abriria mais opções de particionamento. Decidi no primeiro momento agrupar por agência e fazer a chave secundária o número da conta, mas por se tratar de uma aplicação PIX, optei por substituí-la pelo CPF.
 
 Usando agora o CPF como uma das chaves do banco, aumentei as validações em cima do CPF. Logo, para testes de operação, é necessário usar um gerador de CPF.
 
