@@ -6,8 +6,8 @@
 2- Configurar o usuário AWS através do comando aws configure
 
 3-  Ao executar o programa pela primeira vez, ele validará se existe uma tabela “Banco_KRT” no DynamoDB da conta configurada. Caso não haja, ele criará uma tabela com as seguintes chaves: 
-	-pk: NumeroAgencia (string)
-	-sk:CPF (string)
+	**-pk:** NumeroAgencia (string)
+	**-sk:** CPF (string)
 
 4- O sistema já pode ser testado através dos comandos no documento requests.http ou outros métodos (Postman ou API do Swagger)
 
@@ -17,3 +17,5 @@ Na criação da estrutura do banco, optei por usar o conjunto de agência e cpf 
 Usando agora o CPF como uma das chaves do banco, aumentei as validações em cima do CPF. Logo, para testes de operação, é necessário usar um gerador de CPF.
 
 Para a operação de validar transações, eu optei por criar uma nova controller, separando os diversos domínios da aplicação. Os modelos de TransacaoModel e ClienteUpdate são estruturas para fazer a tradução dos dados do body para a aplicação.
+
+O objeto DatabaseManager é um helper que faz a criação e validação da tabela no Dynamo. Criei o mesmo para facilitar a configuração da aplicação
