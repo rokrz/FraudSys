@@ -2,6 +2,7 @@
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using FraudSys.Model;
+using System.Diagnostics;
 
 namespace FraudSys.Helpers
 {
@@ -9,9 +10,16 @@ namespace FraudSys.Helpers
     {
         private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
         private static readonly string table_name = "Banco_KRT";
-        public static void CreateTable()
+        public static void CreateTable(bool criarTabela)
         {
-
+            if (!criarTabela){
+                return;
+            }
+            var checkForTables = client.ListTablesAsync();
+            if (checkForTables.Result.TableNames.Contains(table_name))
+            {
+                return;
+            }
             var request = new CreateTableRequest
             {
                 AttributeDefinitions = new List<AttributeDefinition>()
@@ -23,7 +31,7 @@ namespace FraudSys.Helpers
                     },
                     new AttributeDefinition
                     {
-                        AttributeName = "NumeroConta",
+                        AttributeName = "CPF",
                         AttributeType = "S"
                     },
                 },
@@ -36,7 +44,7 @@ namespace FraudSys.Helpers
                     },
                     new KeySchemaElement
                     {
-                        AttributeName = "NumeroConta",
+                        AttributeName = "CPF",
                         KeyType = "RANGE" //Partition key
                     }
                 },

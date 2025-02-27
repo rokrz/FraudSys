@@ -9,6 +9,33 @@ Content-Type:application/json
     "LimitePIX":100
 }
 ###
+POST {{FraudSys_HostAddress}}/Cliente/CriaCliente
+Content-Type:application/json
+{
+    "CPF":"484.312.518-08",
+    "NumeroAgencia":"12345679",
+    "NumeroConta":"9101112",
+    "LimitePIX":100
+}
+###
+POST {{FraudSys_HostAddress}}/Cliente/CriaCliente
+Content-Type:application/json
+{
+    "CPF":"123.456.789-18",
+    "NumeroAgencia":"12345670",
+    "NumeroConta":"9101112",
+    "LimitePIX":100
+}
+###
+POST {{FraudSys_HostAddress}}/Cliente/CriaCliente
+Content-Type:application/json
+{
+    "CPF":"213.645.987-08",
+    "NumeroAgencia":"12345677",
+    "NumeroConta":"9101112",
+    "LimitePIX":100
+}
+###
 DELETE {{FraudSys_HostAddress}}/Cliente/DeletaCliente/12345678/9101112
 Content-Type:application/json
 ###

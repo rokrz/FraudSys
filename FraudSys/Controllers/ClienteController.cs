@@ -24,6 +24,11 @@ public class ClienteController : ControllerBase
     {
         if (cliente != null)
         {
+            var clienteExistente = await _repository.Buscar(cliente.NumeroAgencia,cliente.CPF);
+            if (clienteExistente!=null)
+            {
+                return BadRequest("O usuário já esta cadastrado");
+            }
             if (ValidaNovoUsuario(cliente))
             {
                 await _repository.Adicionar(cliente);
@@ -40,12 +45,12 @@ public class ClienteController : ControllerBase
         }
     }
 
-    [HttpGet("BuscaCliente/{agencia}/{conta}")]
-    public async Task<IActionResult> BuscaCliente(string agencia, string conta)
+    [HttpGet("BuscaCliente/{agencia}/{cpf}")]
+    public async Task<IActionResult> BuscaCliente(string agencia, string cpf)
     {
-        if (!string.IsNullOrEmpty(agencia) && !string.IsNullOrEmpty(conta))
+        if (!string.IsNullOrEmpty(agencia) && !string.IsNullOrEmpty(cpf))
         {
-            var cliente = await _repository.Buscar(agencia, conta);
+            var cliente = await _repository.Buscar(agencia, cpf);
             if (cliente != null)
             {
                 return Ok(cliente);
@@ -68,7 +73,7 @@ public class ClienteController : ControllerBase
     {
         if (cUpdate != null)
         {
-            Cliente cliente = await _repository.Buscar(cUpdate.NumeroAgencia, cUpdate.NumeroConta);
+            Cliente cliente = await _repository.Buscar(cUpdate.NumeroAgencia, cUpdate.CPF);
             if (cUpdate.NovoLimite >= 0)
             {
                 if (cliente != null)
@@ -111,15 +116,15 @@ public class ClienteController : ControllerBase
     }
 
     //Metodo de deleçao do cliente
-    [HttpDelete("DeletaCliente/{agencia}/{conta}")]
-    public async Task<IActionResult> Delete(string agencia, string conta)
+    [HttpDelete("DeletaCliente/{agencia}/{cpf}")]
+    public async Task<IActionResult> Delete(string agencia, string cpf)
     {
-        if (!String.IsNullOrEmpty(agencia) && !String.IsNullOrEmpty(conta))
+        if (!String.IsNullOrEmpty(agencia) && !String.IsNullOrEmpty(cpf))
         {
-            Cliente c = await _repository.Buscar(agencia, conta);
+            Cliente c = await _repository.Buscar(agencia, cpf);
             if (c != null)
             {
-                await _repository.Deletar(agencia, conta);
+                await _repository.Deletar(agencia, cpf);
                 return Ok();
             }
             else
@@ -134,11 +139,60 @@ public class ClienteController : ControllerBase
         
     }
 
+    private bool ValidaCPF(string cpf)
+    {
+        // Remove caracteres não numéricos
+        cpf = new string(cpf.Where(char.IsDigit).ToArray());
+        // Verifica se o CPF tem 11 dígitos
+        if (cpf.Length != 11)
+        {
+            return false;
+        }
+        // Verifica se todos os dígitos são iguais (CPF inválido)
+        if (cpf.Distinct().Count() == 1)
+        {
+            return false;
+        }
+        // Calcula o primeiro dígito verificador
+        int soma = 0;
+        for (int i = 0; i < 9; i++)
+        {
+            soma += int.Parse(cpf[i].ToString()) * (10 - i);
+        }
+        int primeiroDigito = 11 - (soma % 11);
+        if (primeiroDigito >= 10)
+        {
+            primeiroDigito = 0;
+        }
+        // Verifica o primeiro dígito verificador
+        if (primeiroDigito != int.Parse(cpf[9].ToString()))
+        {
+            return false;
+        }
+        // Calcula o segundo dígito verificador
+        soma = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            soma += int.Parse(cpf[i].ToString()) * (11 - i);
+        }
+        int segundoDigito = 11 - (soma % 11);
+        if (segundoDigito >= 10)
+        {
+            segundoDigito = 0;
+        }
+        // Verifica o segundo dígito verificador
+        if (segundoDigito != int.Parse(cpf[10].ToString()))
+        {
+            return false;
+        }
+        return true;
+    }
+
     //Metodo de validacao das entradas
     private bool ValidaNovoUsuario(Cliente user)
     {
         //Valida o CPF por meio de um Regex
-        if (string.IsNullOrEmpty(user.CPF) || !Regex.Match(user.CPF, @"^\d{3}\.\d{3}\.\d{3}-\d{2}$").Success)
+        if (string.IsNullOrEmpty(user.CPF) || !ValidaCPF(user.CPF))
         {
             return false;
         }

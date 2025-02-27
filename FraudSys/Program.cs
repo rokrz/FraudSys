@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2;
 using FraudSys.Repositories;
 using FraudSys.Helpers;
 
-DatabaseManager.CreateTable();
+DatabaseManager.CreateTable(true);
 
 var builder = WebApplication.CreateBuilder(args);
 

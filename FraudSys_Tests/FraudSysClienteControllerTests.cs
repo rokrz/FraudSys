@@ -16,7 +16,7 @@ namespace FraudSys_Tests
 
         private readonly Cliente clienteBusca = new Cliente
         {
-            CPF = "484.312.518-08",
+            CPF = "368.914.490-65",
             NumeroAgencia = "agencia2",
             NumeroConta = "conta2",
             LimitePIX = 200
@@ -144,7 +144,7 @@ namespace FraudSys_Tests
             ClienteUpdate cUpdate = new ClienteUpdate
             {
                 NumeroAgencia = clienteBusca.NumeroAgencia,
-                NumeroConta = clienteBusca.NumeroConta,
+                CPF = clienteBusca.NumeroConta,
                 NovoLimite = 500
             };
 
@@ -166,7 +166,7 @@ namespace FraudSys_Tests
             ClienteUpdate cUpdate = new ClienteUpdate
             {
                 NumeroAgencia = "agencia1",
-                NumeroConta = clienteBusca.NumeroConta,
+                CPF = clienteBusca.NumeroConta,
                 NovoLimite = 500
             };
 
@@ -184,7 +184,7 @@ namespace FraudSys_Tests
             ClienteUpdate cUpdate = new ClienteUpdate
             {
                 NumeroAgencia = clienteBusca.NumeroAgencia,
-                NumeroConta = clienteBusca.NumeroConta,
+                CPF = clienteBusca.NumeroConta,
                 NovoLimite = -120
             };
 

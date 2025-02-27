@@ -3,10 +3,10 @@
     public class TransacaoModel
     {
         public string NumeroAgenciaOrigem { get; set; }
-        public string NumeroContaOrigem { get; set; }
+        public string CPFOrigem { get; set; }
         public float ValorTransacao { get; set; }
         public string NumeroAgenciaDestino { get; set; }
-        public string NumeroContaDestino { get; set; }
+        public string CPFDestino { get; set; }
 
         public bool ValidaDadosTransacao()
         {
@@ -14,7 +14,7 @@
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(NumeroContaOrigem))
+            if (string.IsNullOrEmpty(CPFOrigem))
             {
                 return false;
             }

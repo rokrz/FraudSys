@@ -23,7 +23,7 @@ namespace FraudSys.Controllers
             {
                 if (transacao.ValidaDadosTransacao())
                 {
-                    var cliente = await _repository.Buscar(transacao.NumeroAgenciaOrigem, transacao.NumeroContaOrigem);
+                    var cliente = await _repository.Buscar(transacao.NumeroAgenciaOrigem, transacao.CPFOrigem);
                     if (cliente!=null)
                     {
                         if (cliente.LimitePIXAtual >= transacao.ValorTransacao)

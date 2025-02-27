@@ -5,13 +5,14 @@ namespace FraudSys.Model
     [DynamoDBTable("Banco_KRT")]
     public class Cliente
     {
-        [DynamoDBProperty]
+        
+        [DynamoDBRangeKey("CPF")]
         public string CPF { get; set; }
 
         [DynamoDBHashKey("NumeroAgencia")]
         public string NumeroAgencia { get; set; }
 
-        [DynamoDBRangeKey("NumeroConta")]
+        [DynamoDBProperty]
         public string NumeroConta { get; set; }
 
         [DynamoDBProperty]

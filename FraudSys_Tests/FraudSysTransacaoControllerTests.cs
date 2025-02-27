@@ -28,9 +28,9 @@ namespace FraudSys_Tests
         private readonly TransacaoModel transacaoExemplo = new TransacaoModel
         {
             NumeroAgenciaOrigem = "agencia2",
-            NumeroContaOrigem = "conta2",
+            CPFOrigem = "conta2",
             NumeroAgenciaDestino = "agencia2",
-            NumeroContaDestino = "conta2",
+            CPFDestino = "conta2",
             ValorTransacao = 100
         };
 
@@ -59,9 +59,9 @@ namespace FraudSys_Tests
             TransacaoModel tm = new TransacaoModel
             {
                 NumeroAgenciaOrigem = "agencia2",
-                NumeroContaOrigem = "conta2",
+                CPFOrigem = "conta2",
                 NumeroAgenciaDestino = "agencia2",
-                NumeroContaDestino = "conta2",
+                CPFDestino = "conta2",
                 ValorTransacao = 400
             };
             var result = await _controller.ValidaTransacao(tm);
@@ -76,9 +76,9 @@ namespace FraudSys_Tests
             TransacaoModel tm = new TransacaoModel
             {
                 NumeroAgenciaOrigem = "agencia 4",
-                NumeroContaOrigem = "conta 5",
+                CPFOrigem = "conta 5",
                 NumeroAgenciaDestino = "agencia2",
-                NumeroContaDestino = "conta2",
+                CPFDestino = "conta2",
                 ValorTransacao = 400
             };
             var result = await _controller.ValidaTransacao(tm);
@@ -92,9 +92,9 @@ namespace FraudSys_Tests
             TransacaoModel tm = new TransacaoModel
             {
                 NumeroAgenciaOrigem = "agencia2",
-                NumeroContaOrigem = "conta2",
+                CPFOrigem = "conta2",
                 NumeroAgenciaDestino = "agencia2",
-                NumeroContaDestino = "conta2",
+                CPFDestino = "conta2",
                 ValorTransacao = -1400
             };
             var result = await _controller.ValidaTransacao(tm);
@@ -108,9 +108,9 @@ namespace FraudSys_Tests
             TransacaoModel tm = new TransacaoModel
             {
                 NumeroAgenciaOrigem = null,
-                NumeroContaOrigem = null,
+                CPFOrigem = null,
                 NumeroAgenciaDestino = "agencia2",
-                NumeroContaDestino = "conta2",
+                CPFDestino = "conta2",
                 ValorTransacao = 100
             };
             var result = await _controller.ValidaTransacao(tm);

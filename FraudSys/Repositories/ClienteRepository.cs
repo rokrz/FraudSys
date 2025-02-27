@@ -23,15 +23,15 @@ namespace FraudSys.Repositories
             return cliente;
         }
 
-        public async Task<Cliente> Buscar(string agencia, string conta)
+        public async Task<Cliente> Buscar(string agencia, string cpf)
         {
-            var lista = await context.QueryAsync<Cliente>(agencia, Amazon.DynamoDBv2.DocumentModel.QueryOperator.Equal, new object[] { conta }).GetRemainingAsync();
+            var lista = await context.QueryAsync<Cliente>(agencia, Amazon.DynamoDBv2.DocumentModel.QueryOperator.Equal, new object[] { cpf }).GetRemainingAsync();
             return lista.FirstOrDefault();
         }
 
-        public async Task Deletar(string agencia, string conta)
+        public async Task Deletar(string agencia, string cpf)
         {
-            await context.DeleteAsync<Cliente>(agencia, conta);
+            await context.DeleteAsync<Cliente>(agencia, cpf);
         }
     }
 }
